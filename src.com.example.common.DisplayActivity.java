@@ -1,67 +1,107 @@
 package com.example.common;
 
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.util.ArrayList;
 
-import com.example.datadiagramsocket.MainActivity;
 import com.example.datadiagramsocket.R;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class DisplayActivity extends Activity {
 	
-	public TextView m_SystemTimeTextView;
-	public ListView m_SystemTimeListView;
-	public Button m_CancelButton;
+	public TextView 		m_SystemTimeTextView;
+	public ListView 		m_SystemTimeListView;
+	public Button 			m_CancelButton;
+	static Handler 			handerThr;
 	
-	//int counter = 8;
-	//String st="Counter";
-	int clickCounter=0;
-	ArrayList<String> listItems=new ArrayList<String>();
-	ArrayAdapter<String> adapter;
-	//String[] FRUITS = new String[] { "Quận 1", "Quận 2", "Quận 3",
-    //    "Quận 4", "Quận 5", "Quận 6", "Quận 7", "Quận 8"};
+	ArrayList<String> 		dataItem;
+	ArrayAdapter<String> 	adapter;
+	String					ip;
+	String					port;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.display_screen);
 		
+		Intent i 	= getIntent();
+		Bundle bdl 	= i.getBundleExtra("intentFromMain");
+		ip 			= bdl.getString("ip", "10.0.2.15");
+		port 		= bdl.getString("port", "6000");
+		
+		
 		m_SystemTimeListView = (ListView)findViewById(R.id.lvListSystemTime);  
-		
-		
-		
-		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item, listItems);
+		dataItem 			= new ArrayList<String>();		
+		adapter 			= new ArrayAdapter<String>(this,R.layout.single_list_item, dataItem);
 		
 		m_SystemTimeListView.setAdapter(adapter);
 		
-		m_SystemTimeListView.setOnItemClickListener(new OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                    int position, long id) {
-                // When clicked, show a toast with the TextView text
-            //	st=st+counter;
-            //	FRUITS[counter]=new String(st);
-            	
-            	//adapter.insert(st,8);
-            	//m_SystemTimeListView.invalidate();
-                Toast.makeText(getApplicationContext(),
-                ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
-            }
-        });  
+		handerThr = new Handler();		
+		new Thread(new ThreadSocket()).start();
+    		
 	}
+
+	/**
+	 * ThreadSocket process connect to server through udp socket 
+	 * */	
+	public class ThreadSocket implements Runnable{
+		@Override
+		public void run() {
+			while(true){
+				try {	
+					
+					byte[] 			message = new byte[127];
+					DatagramPacket 	p 		= new DatagramPacket(message, message.length); 
+					DatagramSocket	s 		= new DatagramSocket(Integer.parseInt(port),
+																InetAddress.getByName(ip));
+					
+					s.setSoTimeout(10000);			
+					s.receive(p);
+					handerThr.post(new UpdateThread(p.getData()));
+							 
+				} catch (IOException e) {
+					e.printStackTrace();
+				} 		    	
+			}	
+		}			
+	}
+
+	/**
+	 * class UpdateThread
+	 * */
+	public class UpdateThread implements Runnable{
+
+		String msg;
+		
+		UpdateThread(byte[] Message){
+			msg=new String(Message, 0, Message.length);
+		}
+		
+		@Override
+		public void run() {
+			if(msg!=null){
+				dataItem.add(msg);
+		        adapter.notifyDataSetChanged();
+			}	
+		}
+		
+	}
+	
+	/**
+	 * Process event click button Cancel
+	 * */
 	public void btnCancel_OnClick(View view){
-		/*Intent i= new Intent(DisplayActivity.this,MainActivity.class);
-		startActivity(i);
-		finish();*/
-		listItems.add("Clicked : "+clickCounter++);
-        adapter.notifyDataSetChanged();
-	}
+        
+	}	
 }
