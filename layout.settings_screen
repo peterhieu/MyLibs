@@ -1,0 +1,72 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin" >
+
+    <TextView
+        android:id="@+id/tvPort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/edtPort"
+        android:layout_alignLeft="@+id/tvIPAddress"
+        android:layout_alignRight="@+id/tvIPAddress"
+        android:text="@string/Set_tvPort"
+        android:textSize="@dimen/Set_tvPort_textSize" />
+
+    <TextView
+        android:id="@+id/tvIPAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/Set_tvIPAddress_marginTop"
+        android:text="@string/Set_tvIPAddress"
+        android:textSize="@dimen/Set_tvIPAddress_textSize" />
+
+    <EditText
+        android:id="@+id/edtIPAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tvIPAddress"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/btnReceive"
+        android:ems="10"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/edtPort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/edtIPAddress"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/edtIPAddress"
+        android:layout_marginTop="@dimen/Set_edtPort_marginTop"
+        android:ems="10"
+        android:inputType="textEmailAddress" />
+
+    <Button
+        android:id="@+id/btnReceive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvPort"
+        android:layout_centerVertical="true"
+        android:onClick="btnReceive_OnClick"
+        android:text="@string/Set_btnReceive"
+        android:textSize="@dimen/Set_btnReceive_textSize" />
+
+    <Button
+        android:id="@+id/btnQuit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnReceive"
+        android:layout_alignBottom="@+id/btnReceive"
+        android:layout_alignRight="@+id/edtPort"
+        android:onClick="btnQuit_OnClick"
+        android:text="@string/Set_btnQuit"
+        android:textSize="@dimen/Set_btnQuit_textSize" />
+
+</RelativeLayout>
