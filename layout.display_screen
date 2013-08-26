@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tvSystemTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Dis_tvSystemTime"
+        android:textSize="@dimen/Dis_tvSystemTime_textSize" />
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent" >
+      <ListView
+           android:id="@+id/lvListSystemTime"
+           android:layout_width="match_parent"
+           android:overScrollMode="ifContentScrolls"
+           android:layout_height="wrap_content"
+           android:layout_marginRight="@dimen/Dis_lvListSystemTime_marginRight"
+           android:layout_toLeftOf="@+id/btnCancel" >
+      </ListView>
+
+       <Button
+           android:id="@+id/btnCancel"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentBottom="true"
+           android:layout_alignParentRight="true"
+           android:onClick="btnCancel_OnClick"
+           android:layout_marginBottom="@dimen/Dis_btnCancel_marginBottom"
+           android:layout_marginRight="@dimen/Dis_btnCancel_marginRight"
+           android:text="@string/Dis_btnCancel" />
+	</RelativeLayout>
+ 
+
+</LinearLayout>
