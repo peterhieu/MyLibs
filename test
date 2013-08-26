@@ -1,0 +1,369 @@
+1.Do you think it works? If not, what is problem?
+
+int month=5;
+if (month=1)  printf("January");
+else  printf("Not January");
+
+2.Do you know stack? Which one will be allocated in stack? (variables below)
+
+int a=5;
+int b[5];
+void elloh(char  *c, char *d)
+{
+     char e[5];
+     char *g=NULL;
+     g = (char*) malloc(10);
+     g = "hello hello";
+     printf("%d", sizeof(g));
+     printf("%d", sizeof(*g));
+}
+void  f(char *a, char *b)
+{
+     b=a;
+}
+char *p_a, *p_b;
+int main (void)
+{
+     p_a = "hello";
+     f(p_a,p_b);
+     printf("%s", p_a);
+     printf("%s", p_b);
+     getchar();
+}
+
+3.What will be printf?
+
+unsigned char c;
+int main (){
+     for (c = 0; c < 999; c++) printf ("%d",c);
+}
+
+4.Is there any problem?
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void myfunction(char *q){
+     memcpy (q ,"hello",5);
+}
+
+int main(){
+     char * p;
+     myfunction(p);
+     printf(p);
+}
+
+5. In the following program:
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void myfunction(char *q){
+          q = (char*)malloc(8);
+          memcpy (q ,"hello",6);
+}
+int main(){
+     char *p;
+     myfunction(p);
+     printf(p);
+     getchar();
+}
+
+
+a. Is there any problem?
+b. What should we do to have "hello" printed out?
+
+6. In the following program:
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void myfunction(char *q){
+     int  i ;
+     for(i= 0; i <1000; i++){
+          q = (char*)malloc(8);
+          memcpy(q, "hello", 6);
+          printf(q);
+     }
+}
+int main(){
+     char * p;
+     myfunction(p);
+     getchar();
+}
+
+a. Is there any problem ?
+b. with Ram = 2000 byte, is there any problem?
+c. with the question b, where the function c stay at?
+
+7. Where are these variables stored?
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int a = 5;
+int d;
+char  b[6] = "hello";
+const int c = 4;
+
+void myfuntion(){
+     static int g = 5;
+     const int h = 6;
+     char i;
+}
+
+int main (){
+     static int d = 6;
+     const int e = 3;
+     char *f;
+     f = (char*)malloc(5);
+     myfuntion();
+}
+
+8. What does the function do? Is there any problem?
+
+int divide (int a, int b)
+{
+     return b/a;
+}
+
+9. In the following program:
+int a = 0;
+if (a = 0)
+{
+     printf("January");
+}
+else
+{
+     printf("Not January");
+}
+a. What is printfed?
+b. If we change 2 lines
+int a = 0;
+if (a = 0)
+To:
+int a = 6;
+if (a = 6) -> what happens?
+c. If we change 2 lines
+int a = 0;
+if (a = 0)
+To:
+int a = 6;
+if (a = 5) -> what happens?
+
+10.In the following program?
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void AssignString(char *str){
+     str = "This is the 2nd string";
+}
+int main(){
+     char *abc = "This is original string";
+     AssignString(abc);
+     printf(abc);
+     getchar();
+}
+
+a. What is printed out?
+b. If we want to have AssignString function works correctly ("This is the 2nd string" to be printed out), how should we change?
+
+11. Is there any problem?
+
+unsinged char Add(uchar a, uchar b)
+{ 
+     return (a + b);
+}
+
+14. What will be printfed?
+
+int main(){
+    int i = 10;
+    while (i)
+    {
+         printf("%d", --i);
+    }
+}
+
+12. What will be printfed?
+
+char text[4] = "abcd";
+printf("%s", text);
+
+13. What will be printfed?
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void func_a()
+{
+     static int i = 0;
+     i++;
+     printf("%d", i);
+}
+
+int main()
+{
+     for (int i = 0;i<10;i++)	func_a();
+}
+
+14. In this program:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main()
+{
+     char array[20];
+     for (int i = 0;i<20;i++) array[i] = i;
+     int* p = array;
+     p++;
+     p++;
+     printf("0x%x", *p);
+}
+
+a. Is there any problem?
+b. If you fix the issue above, what will be printed out?
+
+15. What will be printed?
+
+unsigned int x;
+for (x = 10; x >=0; x--) printf("%d",x);
+
+16. How does the function work? Where are variables allocated?
+
+int a;
+char* b;
+const char c[20] = "I am a string";
+
+void func(char d, int c, char* f){
+     int g=0;
+     static int h = 2;
+     char *i = NULL;
+     i = (char*)malloc(20);
+     strcpy(i, "Hello");
+     return;
+}
+
+int main (){
+     int j, k;
+     char *l;
+     func(j,k,l);
+}
+
+17. What is printed out?
+
+typedef struct
+{
+     char x;
+     int y;
+}mystruct;
+
+int main (){
+     printf("%d", sizeof(mystruct));
+}
+
+18. Is there any problem with comparing 2 floating point values?
+double a, b;
+...
+if(a == b)...
+
+19. Is there any problem with following function?
+int copy( char *scr, char *dst, unsigned int size)
+{
+     char *s1;
+     while(size--)
+     {
+          *s1++ = *scr++;
+          *dst++ = *s1;
+     }
+     if(256/size) return 0;
+     else return 1;
+}
+
+20. What is linked list? Can you write a program to revert a linked list?
+21. What is Endianess? Write a program to convert a "unsigned int" number from Little-Endian -> Big-Endian?
+22. Add two number use operator &,^,|,!, do not use "+"
+23. There are 2 linked lists called P and Q. Write a program to create a linked list S from those 2 ones in increment order
+24. n is an unsinged int number (32 bits). Write a program to count number of bit 1 of n. For example n = 0b0000000000101 => there are 2 bits 1
+25. n is an unsinged int number (32 bits). Write a program to change byte 0 with byte 3, byte 1 with byte 2.
+26. Write a program to input one string, then print out the part of string start from "SOF" and finish at "EOF". For example, if user put "This if what SOP I want to show EOF xxx", the program will print out " I want to show "
+27. Write a program to multiply two matrix?
+28. What is volatile variable?
+29. What is "static" keyword for?
+30. What is function pointer array? Write a program to demostrate function pointer array.
+
+31. What is software timer? Write a program to implement software timer
+32. What is asynchronous timer, what is synchronous timer?
+Answer: There is not a clear definition about this, but it can be:
+- Synchronous timer is a timer that happens (timeout, overflow...) periodicly. It is not necessary to re-arm for synchronous timer. In opposition, asynchronous timer event is happened one time only, and need to be re-armed before it can be happened again.
+Or
+- Synchronous timer/counter is timer/counter that is increased by system clock (or clock that is derivated from system clock). Asynchronous timer/counter is increased by external clock (that may not be periodicly)
+33. What is vector table?
+34. What is ISR? Could you explain what the system does when an interrupt happens?
+35. What is nested interrupt?
+36. What is re-entrant interrupt?
+37. What is interrupt chaining?
+Answer:
+http://forums.arm.com/index.php?/topic/12745-abort-some-questions-of-arm-interrupt/
+Interrupt chaining: (term with multiple meaning) means one of two things; firstly checking for a new pending interrupt before returning from interupt context (i.e. a scenario which would could waste time by unstacking and then straight away restacking the same registers); or secondly, linking handlers together (typically by replacing the interrupt vector with the new handler to run, followed by the new handler calling the original handler).
+For the first definition (checking for new interrupts before returning), Cortex-M3 already deals with this automatically in hardware, and will perform a "tail-chain" from the end of one interrupt to the entry of another without performing unstacking and restacking.
+
+The second definition is less useful on a closed/embedded platform; the typical example of this type of chaining used to be the DOS TSR (terminate and stay resident) handlers for things like adding special key bindings e.g. "holding CTRL+ALT+A+B brings up my special program". In this scenario, the TSR would replace the keyboard interrupt vector with its own address, giving itself the chance to check for the magic keysequence, but would then chain onto the original handler if it didn't find what it was looking for. This kind of system may also exist where multiple peripherals share a single interrupt line/handler.
+
+Replacing the interrupt vector on Cortex-M3 is simply a matter of changing the pointer value in the vector table in memory, though on most MCUs this would likely also require the vector table to be relocated to RAM first.
+
+38. What is RTOS?
+39. Can you write a program using RTOS to blink 2 LEDs, one at 1Hz, the other one at 1.5Hz frequency?
+40. What is semaphore?
+41. What is mutex? What is difference between mutex and binary semaphone?
+42. What is mail box?
+43. What is message queue?
+44. What is reentrant function? How to write a reentrant function?
+45. What is recursive function? What need to be considered when use this function?
+46. What is deadlock and how to prevent?
+47. What is priority inversion and how to prevent?
+48. What is mutual exclusion?
+49. What is critical section?
+50. What is Task? Each task uses one stack or not?
+51. How many stack is used in system?
+
+52. What is the virtual memory?
+53. What is the memory protection?
+54. What is different between user and kenel mode?
+55. What is mutithread?
+56. What is blocking call, non-clocking call?
+
+57. How One picture can be displayed on screen?
+58. What is a pixel? How many bits are needed for one picture?
+
+
+
+
+SkillMaps_ Newbies
+1. C programming languages (Reference: "GOTTFRIED C BOOK" or "C Programming Language" of Dennis Ritchie)
+- variables type, variable storage
+- heap/stack
+- memory/allocation/release
+- programming practices
+
+2. Data structure/Basic algorithm
+- queue, stack, list, array
+- searching, sorting
+
+3. Microcontroller
+- memory, interrupt (ISR, vector table)
+- peripheral devices
+
+4. ES
+- synchronization
+- SW/HW timer
+- block/non-block calls
+- memory alignment/endianess
+
+5. RTOS (nice to have)
+- basic concept like task, stack, context, drivers, API,..
