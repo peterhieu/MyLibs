@@ -42,8 +42,8 @@ public class DisplayActivity extends Activity {
 		
 		
 		m_SystemTimeListView = (ListView)findViewById(R.id.lvListSystemTime);  
-		dataItem 			= new ArrayList<String>();		
-		adapter 			= new ArrayAdapter<String>(this,R.layout.single_list_item, dataItem);
+		dataItem 			 = new ArrayList<String>();		
+		adapter 			 = new ArrayAdapter<String>(this,R.layout.single_list_item, dataItem);
 		
 		m_SystemTimeListView.setAdapter(adapter);
 		
