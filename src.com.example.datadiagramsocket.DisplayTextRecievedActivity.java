@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,7 +20,7 @@ public class DisplayTextRecievedActivity extends Activity {
 	
 	static ArrayList<String> 		dataItem;
 	static ArrayAdapter<String> 	adapter;
-	static Handler 			handerThr;
+	static Handler 					handerThr;
 	static String					ip;
 	static String					port;
 
@@ -33,23 +32,17 @@ public class DisplayTextRecievedActivity extends Activity {
 		Intent i 	= getIntent();
 		Bundle bdl 	= i.getBundleExtra("intentFromMain");
 		ip 			= bdl.getString("ip", "10.0.2.15");
-		port 		= bdl.getString("port", "4000");
+		port 		= bdl.getString("port", "4000");		
+		handerThr 	= new Handler();
 		
-		handerThr = new Handler();
-		
-		m_SystemTimeListView = (ListView)findViewById(R.id.lvListSystemTime);  
-		dataItem = new ArrayList<String>();		
-		adapter = new ArrayAdapter<String>(this,R.layout.single_list_item, dataItem);
+		m_SystemTimeListView 	= (ListView)findViewById(R.id.lvListSystemTime);  
+		dataItem 				= new ArrayList<String>();		
+		adapter 				= new ArrayAdapter<String>(this,R.layout.single_list_item, dataItem);
 		
 		m_SystemTimeListView.setAdapter(adapter);		
-		
-		Log.d("in onCreate DisplayTexRecieved Activity", " let trace");
-		Log.d("ip", ip);
-		Log.d("port", port);		
-		
-		DataDiagramSocket dtDgramSk = DataDiagramSocket.getInstance();
-		
-		Thread th = new Thread(dtDgramSk);
+					
+		DataDiagramSocket dtDgramSk = DataDiagramSocket.getInstance();		
+		Thread th 					= new Thread(dtDgramSk);
 	
 		th.start();    		
 	}
@@ -69,7 +62,10 @@ public class DisplayTextRecievedActivity extends Activity {
 		public void run() {
 			Calendar ca = Calendar.getInstance();
 			if(msg!=null){
-				dataItem.add(msg + ca.get(Calendar.HOUR)+"/"+ca.get(Calendar.MINUTE)+"/"+ca.get(Calendar.SECOND));
+				dataItem.add(msg +" : "+ ca.get(Calendar.DAY_OF_MONTH)+"/"+ 
+							ca.get(Calendar.MONTH)+"/"+ca.get(Calendar.YEAR)+"/"+" : "+
+							ca.get(Calendar.HOUR)+"/"+ca.get(Calendar.MINUTE)+"/"+
+							ca.get(Calendar.SECOND));
 		        adapter.notifyDataSetChanged();
 			}	
 		}		
