@@ -68,10 +68,10 @@ public class DataDiagramSocket implements Runnable{
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		while(true){
+		while(true) {
 			try {	
 				
-				byte[] 	message 		= new byte[127];
+				byte[] 	message 		= new byte[256];
 				m_datagramPacket 		= new DatagramPacket(message, message.length); 
 				m_datagramSocket 		= new DatagramSocket(m_defPort, m_defIPAddress);
 				
