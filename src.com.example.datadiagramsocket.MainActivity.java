@@ -1,6 +1,6 @@
 package com.example.datadiagramsocket;
 
-import com.example.common.AlertDialog;
+import com.example.common.AlertDialogError;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -21,8 +21,8 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.settings_screen);
 		
-		m_IPAddressEditText=(EditText)findViewById(R.id.edtIPAddress);
-		m_PortEditText=(EditText)findViewById(R.id.edtPort);
+		m_IPAddressEditText = (EditText)findViewById(R.id.edtIPAddress);
+		m_PortEditText 		= (EditText)findViewById(R.id.edtPort);
 	}
 	
 	public void btnReceive_OnClick(View view){
@@ -31,12 +31,10 @@ public class MainActivity extends Activity {
 		String port = m_PortEditText.getText().toString();
 		
 		if (ip.equals("")) {
-			AlertDialog dialog= new AlertDialog (this,"Error","No ip address");
-			dialog.Show();
+			new AlertDialogError (this,"Error","No ip address");
 		}
 		else if (port.equals("")) {
-			AlertDialog dialog= new AlertDialog (this,"Error","No data port");
-			dialog.Show();
+			new AlertDialogError (this,"Error","No data port");
 		}
 		else {	
 			
