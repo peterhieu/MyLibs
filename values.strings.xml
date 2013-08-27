@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DataDiagramSocket</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    
+	<string name="Set_tvPort">Port</string>
+	<string name="Set_tvIPAddress">IP Address</string>
+	<string name="Set_btnReceive">Receive data</string>
+	<string name="Set_btnQuit">Quit</string>
+	
+	<string name="Dis_tvSystemTime">System Time</string>
+	<string name="Dis_btnCancel">Cancel</string>
+	
+	<string name="Error_tvError">Error</string>
+	<string name="Error_tvErrorMessageContent">Error message will be showed here within Multiline</string>
+	<string name="Error_btnOK">OK</string>
+</resources>
